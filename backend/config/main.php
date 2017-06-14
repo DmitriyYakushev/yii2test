@@ -14,7 +14,7 @@ return [
     'basePath'            => dirname(__DIR__),
     'name'                => 'Admin Panel',
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute'        => 'news/index',
+    'defaultRoute'        => 'users/index',
     'components'          => array_merge(require __DIR__ . '/../../common/config/db.php', [
         'ih'           => [
             'class' => '\common\components\CImageHandler',
