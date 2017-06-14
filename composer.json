@@ -1,0 +1,51 @@
+{
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-jui": "^2.0",
+        "pinxterapp/yii2-rest-auth": "~1.0.0",
+        "phpdocumentor/reflection-docblock": "2.0.4",
+        "cebe/markdown": "1.0.1",
+        "yiisoft/yii2-apidoc": "^2.1",
+        "pinxterapp/yii2-pinxter-restore-password": "dev-master",
+        "2amigos/yii2-switch-widget": "~1.0",
+        "keygenqt/yii2-last-page": "*@dev",
+        "keygenqt/yii2-breadcrumbs-panel": "*@dev",
+        "keygenqt/yii2-datepicker": "*@dev",
+        "keygenqt/yii2-vertical-menu": "*@dev",
+        "pinxterapp/yii2-image-ajax": "*@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1",
+        "codeception/specify": "~0.4.3"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://git.pinxterapp.com/"
+        }
+    ],
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
