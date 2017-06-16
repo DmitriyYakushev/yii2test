@@ -1,5 +1,5 @@
 Проект на yii2 содержит два главных application - api и backend.
-1. запустить этот проект у себя) база в db_dump. vendor Обновляем через composer https://getcomposer.org/ просто composer update. для композер надо добавить репозиторий composer config repositories.pinxter composer https://git.pinxterapp.com/  потверждаете email добавляете ключь ssh и тогда оно не будет требовать пароля
+1. запустить этот проект у себя) база в db_dump. vendor Обновляем через composer https://getcomposer.org/ просто composer update. для композера треубется регистрация https://git.pinxterapp.com/ потверждаете email добавляете ключь ssh и тогда оно не будет требовать пароля
 также надо настроить коннект к базе. common/config/db_local.php копировать в db.php
 2. добавить в админку и в апи новости. добавление/редактирование в админку, в апи просто получение списка новостей. обязательные поля title description img_url.
 
