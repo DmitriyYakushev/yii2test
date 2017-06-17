@@ -2,8 +2,8 @@
 
 namespace backend\models;
 
+use common\models\generated\News;
 use yii\data\ActiveDataProvider;
-use common\models\News;
 
 /**
  * NewsSearchModel represents the model behind the search form about `common\models\News`.
@@ -18,8 +18,9 @@ class NewsSearch extends News
     public function rules()
     {
         return [
-            [['news_id', 'user_id', 'news_date', 'pin_to_top', 'news_type', 'news_status'], 'integer'],
-            [['news_title', 'news_text', 'news_link', 'news_image', 'news_video', 'news_video_code'], 'safe'],
+            [['news_id', 'user_id', 'news_date'], 'integer'],
+            [['title', 'description', 'img_url'], 'required'],
+            [['title', 'description', 'text', 'img_url'], 'safe'],
         ];
     }
 
@@ -37,8 +38,8 @@ class NewsSearch extends News
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query'      => $query,
-            'sort'       => [
+            'query' => $query,
+            'sort' => [
                 'defaultOrder' => [
                     'news_id' => SORT_DESC,
                 ]
@@ -52,20 +53,18 @@ class NewsSearch extends News
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'news_id'     => $this->news_id,
-            'user_id'     => $this->user_id,
-            'news_date'   => $this->news_date,
-            'pin_to_top'  => $this->pin_to_top,
-            'news_type'   => $this->news_type,
-            'news_status' => $this->news_status,
+            'news_id' => $this->news_id,
+            'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'news_title', $this->news_title])
-            ->andFilterWhere(['like', 'news_text', $this->news_text])
-            ->andFilterWhere(['like', 'news_link', $this->news_link])
-            ->andFilterWhere(['like', 'news_image', $this->news_image])
-            ->andFilterWhere(['like', 'news_video', $this->news_video])
-            ->andFilterWhere(['like', 'news_video_code', $this->news_video_code]);
+        if (!empty($this->news_date)) {
+            $news_date = \DateTime::createFromFormat('j-M-Y', $this->news_date)->modify('today');
+            $query->andFilterWhere(['between', 'news_date', $news_date->getTimestamp(), $news_date->getTimestamp() + (24 * 3600)]);
+        }
+
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
     }

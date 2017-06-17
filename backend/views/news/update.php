@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use common\models\News as Model;
+use common\models\generated\News as Model;
 use \keygenqt\breadcrumbsPanel\BreadcrumbsPanel;
 use \dosamigos\switchinput\SwitchBox;
 use backend\widgets\Alert;
@@ -28,15 +28,10 @@ echo Alert::widget();
 
 $form = ActiveForm::begin(Helper::getFormParams());
 
-echo $form->field($model, 'news_title');
-echo $form->field($model, 'news_text')->textarea();
-echo $form->field($model, 'news_link');
-echo $form->field($model, 'news_image')->widget(keygenqt\imageAjax\ImageAjax::className(), [
-    'url' => ['ajax/simple-image']
-]);
-echo $form->field($model, 'news_video');
-echo $form->field($model, 'news_video_code');
-echo $form->field($model, 'news_type')->dropDownList(Model::getTypes());
+echo $form->field($model, 'title');
+echo $form->field($model, 'description');
+echo $form->field($model, 'text')->textarea();
+echo $form->field($model, 'img_url');
 echo $form->field($model, 'news_date')->widget(\keygenqt\datePicker\DatePicker::className(), ['dateFormat' => 'php:j-M-Y']);
 echo $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::getColumn(
     \yii\helpers\ArrayHelper::index(
@@ -48,17 +43,6 @@ echo $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::get
     }
 )
 );
-
-echo $form->field($model, 'news_status')->widget(SwitchBox::className(), [
-    'clientOptions' => [
-        'inverse'  => true,
-        'size'     => 'normal',
-        'onColor'  => 'success',
-        'offColor' => 'danger',
-        'onText'   => 'ON',
-        'offText'  => 'OFF'
-    ]
-]);
 
 echo Html::tag('div', Html::submitButton('Save', ['class' => 'btn btn-success']), ['class' => 'form-save']);
 

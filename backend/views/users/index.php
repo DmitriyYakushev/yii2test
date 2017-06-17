@@ -1,5 +1,7 @@
 <?php
 use \backend\models\UsersSearch as Model;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * @var yii\web\View $this
@@ -25,6 +27,22 @@ echo \yii\grid\GridView::widget([
             'value'     => function (Model $model) {
                 return $model->readableStatus();
             }
-        ]
+        ],
+        [
+            'header' => 'View',
+            'content' => function (Model $model) {
+                return \yii\bootstrap\Button::widget([
+                    'tagName' => 'a',
+                    'label' => Html::tag('i', '', ['class' => 'fa fa-pencil-square-o']),
+                    'encodeLabel' => false,
+                    'options' => [
+                        'class' => 'btn-primary',
+                        'href' => Url::toRoute(['users/view-events', 'userId' => $model->user_id])
+                    ],
+                ]);
+            },
+            'headerOptions' => ['class' => 'settings', 'style' => 'width: 75px;'],
+            'contentOptions' => ['class' => 'grid-btn', 'style' => 'width: 75px;text-align: center;vertical-align: middle;'],
+        ],
     ],
 ]);

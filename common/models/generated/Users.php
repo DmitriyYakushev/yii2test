@@ -26,7 +26,7 @@ use Yii;
  * @property double $user_long
  * @property integer $user_hide_location
  *
- * @property EventUsers[] $eventUsers
+ * @property UserEvents[] $eventUsers
  * @property Events[] $events
  * @property ForumFollow[] $forumFollows
  * @property Forums[] $forums
@@ -103,7 +103,7 @@ class Users extends \yii\db\ActiveRecord
      */
     public function getEventUsers()
     {
-        return $this->hasMany(EventUsers::className(), ['user_id' => 'user_id']);
+        return $this->hasMany(UserEvents::className(), ['user_id' => 'user_id']);
     }
 
     /**
@@ -111,7 +111,7 @@ class Users extends \yii\db\ActiveRecord
      */
     public function getEvents()
     {
-        return $this->hasMany(Events::className(), ['event_id' => 'event_id'])->viaTable('event_users', ['user_id' => 'user_id']);
+        return $this->hasMany(Events::className(), ['event_id' => 'event_id'])->viaTable('user_events', ['user_id' => 'user_id']);
     }
 
     /**
