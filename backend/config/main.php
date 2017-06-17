@@ -35,7 +35,6 @@ return [
             'defaultRoles' => ['admin', 'manager', 'user'],
         ],
         'request'      => [
-            'baseUrl'             => '/admin',
             'cookieValidationKey' => 'SDFAsdfajusdfn&&jsdfnjs_32ew_backend',
             'csrfParam'           => '_backendCSRF',
         ],
